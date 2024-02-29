@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"testing"
 )
 
 /*
@@ -30,4 +31,28 @@ func main() {
 	})
 	fmt.Println("Sorted by name (descending): ", list)
 
+}
+
+type User struct {
+	Id   string
+	Nama string
+}
+
+func SortSliceMap(input []User) []User {
+	sort.Slice(input, func(i, j int) bool {
+		return input[i].Id > input[j].Id
+	})
+
+	return input
+}
+
+func TestSortSliceMap(t *testing.T) {
+	user := []User{
+		{"1", "Muhammad Aditya"},
+		{"2", "Ichsan Ashiddiqi"},
+	}
+
+	result := SortSliceMap(user)
+
+	fmt.Println(result)
 }
