@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"os"
 	"testing"
 )
@@ -12,9 +13,14 @@ func TestStreamDecoder(t *testing.T) { // json -> golang
 	decoder := json.NewDecoder(reader) // parameter json.NewEncoder() bisa baca stream dari file, network, atau request body
 	user := User{}
 
-	err := decoder.Decode(&user)
-	if err != nil {
-		t.Fatalf("Error decode stream data JSON: %s", err.Error())
+	for {
+		err := decoder.Decode(&user)
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			t.Errorf("error while read file: %s", err.Error())
+		}
 	}
 
 	fmt.Println(user)
