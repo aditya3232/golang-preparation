@@ -24,7 +24,23 @@ func getPalindrome(input string) bool {
 	return true
 }
 
+func getPalindrome2(input string) bool {
+	formatString := strings.ToLower(strings.ReplaceAll(input, " ", ""))
+	left := 0
+	right := len(formatString) - 1
+
+	for left < right {
+		if formatString[left] != formatString[right] {
+			return false
+		}
+		left++
+		right--
+	}
+
+	return true
+}
+
 func main() {
 	fmt.Println(getPalindrome("Budi"))
-	fmt.Println(getPalindrome("malam"))
+	fmt.Println(getPalindrome2("malam"))
 }
