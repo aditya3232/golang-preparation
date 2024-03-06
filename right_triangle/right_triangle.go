@@ -9,10 +9,20 @@ import "fmt"
 */
 
 func main() {
-	for i := 0; i < 5; i++ {
-		for j := 0; j <= i; j++ {
+	input := 5
+	for i := 1; i < input; i++ {
+		for j := 1; j <= i; j++ {
 			fmt.Print("* ")
 		}
 		fmt.Println()
 	}
+	fmt.Println()
+
+	for i := 1; i <= input; i++ {
+		for j := 1; j <= input-i; j++ { // kondisi perulangan akan mengulang data dari input - i
+			fmt.Print("* ")
+		}
+		fmt.Println()
+	}
+	fmt.Println()
 }
